@@ -6,7 +6,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@300;400;600;700&family=MedievalSharp&display=swap" rel="stylesheet">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>交错的光与暗 - 第一章 v16</title>
+    <title>交错的光与暗 - 第一章 v17</title>
     <style>
         * {
             margin: 0;
@@ -1046,7 +1046,7 @@
                 break;
             case 'bgm':
             switchBGM(cmd.name);
-            nextScript();
+            if (autoMode) { setTimeout(nextScript, 800); } else { nextScript(); }
             break;
         case 'bg':
                 changeBackground(cmd.image);
@@ -1105,7 +1105,7 @@
         setTimeout(() => {
             chapterTitle.style.display = 'none';
             nextScript();
-        }, skipMode ? 300 : 2500);
+        }, skipMode ? 300 : (autoMode ? 1500 : 2500));
     }
 
     function changeBackground(imageKey) {
@@ -1121,6 +1121,8 @@
                 isFading = false;
                 if (skipMode) {
                     setTimeout(nextScript, 300);
+                } else if (autoMode) {
+                    setTimeout(nextScript, 1000);
                 } else {
                     nextScript();
                 }
@@ -1130,6 +1132,8 @@
                 isFading = false;
                 if (skipMode) {
                     setTimeout(nextScript, 300);
+                } else if (autoMode) {
+                    setTimeout(nextScript, 1000);
                 } else {
                     nextScript();
                 }
@@ -1174,7 +1178,7 @@
                 
                 // 自动模式
                 if (autoMode) {
-                    setTimeout(nextScript, 1500);
+                    setTimeout(nextScript, 2500);
                 }
             }
         }, 30);
@@ -1219,7 +1223,7 @@
         document.querySelector('.menu-btn:nth-child(4)').textContent = 'SKIP';
         // 立即生效：如果当前不在打字中，直接推进
         if (autoMode && !isTyping && dialogBox.style.display !== 'none') {
-            setTimeout(nextScript, 1500);
+            setTimeout(nextScript, 2500);
         }
     }
 
