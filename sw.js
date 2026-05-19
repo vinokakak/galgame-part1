@@ -1,4 +1,4 @@
-const CACHE_NAME = 'galgame-part1-v16';
+const CACHE_NAME = 'galgame-part1-v17';
 const URLS_TO_CACHE = [
   './index.html',
   './icon-192.png',
