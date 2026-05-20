@@ -409,167 +409,461 @@ const IMAGES = {
 
         // ==================== 剧本内容 ====================
         const script = [
-            // 标题
-            { type: 'title_start' },
-            
-            // 开场独白
-            { type: 'prologue' },
-            
-            // 章节标题
-            { type: 'chapter', text: '第一章\n温暖的深渊' },
-            
-            // 场景1：山村清晨
-            { type: 'bg', image: 'bg_village_morning' },
-            { type: 'narration', text: '清晨的卡洛斯村，薄雾笼罩着石板屋顶。' },
-            { type: 'narration', text: '他站在自己那间摇摇欲坠的小屋前，望着远处蜿蜒的山路。' },
-            { type: 'narration', text: '又一天了。又是等待的一天。' },
-            { type: 'narration', text: '然后他看到了她——那个深渊来的女孩，又站在村口的枯树下。' },
-            { type: 'narration', text: '银色的头发，黑色的裙子，一动不动，像一尊雕像。' },
-            
-            // 选择支1
-            { type: 'choice', options: [
-                { text: '走过去打个招呼', jump: 'choice1_a' },
-                { text: '假装没看见', jump: 'choice1_b' }
-            ]},
-            
-            // 选择支1分支
-            { type: 'label', name: 'choice1_a' },
-            { type: 'narration', text: '他走过去，站在她面前。' },
-            { type: 'text', speaker: '尤里斯', text: '……你又来了？' },
-            { type: 'narration', text: '她看着他，没有表情。' },
-            { type: 'text', speaker: '艾丽斯', text: '……等。' },
-            { type: 'text', speaker: '艾丽斯', text: '等尤里斯。' },
-            { type: 'goto', target: 'after_choice1' },
-            
-            { type: 'label', name: 'choice1_b' },
-            { type: 'narration', text: '他转身往回走。' },
-            { type: 'narration', text: '但他听见了脚步声跟上来。轻轻的，很慢，但没有停。' },
-            { type: 'text', speaker: '艾丽斯', text: '尤里斯。' },
-            { type: 'narration', text: '他叹了口气，转过身。' },
-            { type: 'text', speaker: '尤里斯', text: '……你到底想要什么？' },
-            { type: 'text', speaker: '艾丽斯', text: '不知道。' },
-            { type: 'goto', target: 'after_choice1' },
-            
-            { type: 'label', name: 'after_choice1' },
-            
-            // 场景2：日常
-            { type: 'narration', text: '他不知道从什么时候开始，每天早上推开窗，她就在那里。' },
-            { type: 'narration', text: '最开始他以为她只是路过。后来他发现她会站一整天。' },
-            { type: 'narration', text: '再后来，他开始给她带食物。' },
-            { type: 'narration', text: '她接过面包的时候，歪了歪头。' },
-            { type: 'text', speaker: '艾丽斯', text: '……这是什么？' },
-            { type: 'text', speaker: '尤里斯', text: '……面包？你不吃东西吗？' },
-            { type: 'text', speaker: '艾丽斯', text: '吃。' },
-            { type: 'narration', text: '然后她就吃了。一口一口，很慢，但没有剩。' },
-            
-            // 场景3：悬崖边缘
-            { type: 'bg', image: 'bg_cliff_morning' },
-            { type: 'narration', text: '那天他带她去了悬崖。' },
-            { type: 'narration', text: '不是为了别的，只是她问了——“上面有什么？”' },
-            { type: 'text', speaker: '艾丽斯', text: '上面……有光。' },
-            { type: 'narration', text: '她站在悬崖边，风吹起她的头发。' },
-            { type: 'narration', text: '他突然发现，她看起来没那么像雕像了。' },
-            { type: 'text', speaker: '尤里斯', text: '小心，别站太边缘。' },
-            { type: 'text', speaker: '艾丽斯', text: '……会掉下去？' },
-            { type: 'text', speaker: '尤里斯', text: '会。' },
-            { type: 'text', speaker: '艾丽斯', text: '掉下去会死吗？' },
-            { type: 'narration', text: '他不知道该怎么回答。' },
-            { type: 'text', speaker: '尤里斯', text: '……你以前跳过吗？' },
-            { type: 'text', speaker: '艾丽斯', text: '跳。掉下去，没死。又爬上来。' },
-            { type: 'text', speaker: '艾丽斯', text: '没试过从下面跳上来。' },
-            
-            // 场景4：深渊洞窟 - 艾丽斯被锁链锁住
-            { type: 'bg', image: 'bg_alice_chained' },
-            { type: 'narration', text: '他决定带她回深渊看看。' },
-            { type: 'narration', text: '不是好奇。只是想让她知道，他懂。' },
-            { type: 'narration', text: '深渊很黑，只有紫水晶的微光。' },
-            { type: 'narration', text: '她在前面走，脚步轻得没有声音。' },
-            { type: 'text', speaker: '艾丽斯', text: '这里是牢房。' },
-            { type: 'narration', text: '她指着一个角落。' },
-            { type: 'text', speaker: '艾丽斯', text: '我的。' },
-            { type: 'narration', text: '他看到了——那把石椅上，有锈迹斑斑的链条痕迹。' },
-            { type: 'narration', text: '她从来不坐那把椅子。她站在椅子前面。背对着他。' },
-            { type: 'text', speaker: '艾丽斯', text: '链子……断了。' },
-            { type: 'text', speaker: '艾丽斯', text: '不知道为什么断的。' },
-            { type: 'text', speaker: '艾丽斯', text: '然后我就上来了。' },
-            { type: 'text', speaker: '艾丽斯', text: '然后看到尤里斯。' },
-            { type: 'narration', text: '她的声音很平。像在陈述一个与己无关的事实。' },
-            
-            // 场景5：链子
-            { type: 'narration', text: '他看着那些链条的痕迹。一圈一圈，磨出的印记。' },
-            { type: 'narration', text: '很深。说明戴了很久。' },
-            { type: 'text', speaker: '尤里斯', text: '……疼吗？' },
-            { type: 'text', speaker: '艾丽斯', text: '不知道。' },
-            { type: 'text', speaker: '艾丽斯', text: '不知道什么是疼。' },
-            { type: 'narration', text: '她伸出手，给他看手腕。' },
-            { type: 'narration', text: '苍白的皮肤上，有淡淡的粉色痕迹。' },
-            { type: 'text', speaker: '艾丽斯', text: '这个……是痕迹。' },
-            { type: 'text', speaker: '艾丽斯', text: '尤里斯说疼。所以是痕迹。' },
-            
-            // 场景6：洞窟内对话
-            { type: 'bg', image: 'bg_cave_dialog' },
-            { type: 'narration', text: '深渊的紫光在两人之间流动。' },
-            { type: 'narration', text: '她看着那些碎片——锁链的碎片，安静地散落在地上。' },
-            { type: 'text', speaker: '尤里斯', text: '……你一个人在这里多久了？' },
-            { type: 'text', speaker: '艾丽斯', text: '不知道。' },
-            { type: 'text', speaker: '艾丽斯', text: '一直在这里。' },
-            { type: 'narration', text: '她歪了歪头，像是在思考这个问题。' },
-            { type: 'text', speaker: '艾丽斯', text: '……你是第一个来的。' },
-            
-            // 场景7：CG - 破链瞬间
-            { type: 'cg', image: 'cg_chain_break' },
-            { type: 'narration', text: '他不知道该说什么。' },
-            { type: 'narration', text: '他想说点什么。关于疼痛，关于自由，关于——' },
-            { type: 'narration', text: '但她已经在看那些碎片了。' },
-            { type: 'narration', text: '紫光在碎片里流动。像还活着的什么东西。' },
-            
-            // 场景8：破碎
-            { type: 'bg', image: 'bg_alice_chained' },
-            { type: 'narration', text: '所有的链条都碎了。紫色的碎片像萤火虫一样飘在空气里。' },
-            { type: 'text', speaker: '艾丽斯', text: '……疼。' },
-            { type: 'narration', text: '她人生中第一次说出了关于感受的词。' },
-            
-            // 场景9：翅膀
-            { type: 'narration', text: '她用浮空术送两人上悬崖。然后他看到了——她的背后，伸出了两片小小的黑色翅膀。巴掌大，贴在背上，紫色的微光在翅膀边缘流动。' },
-            { type: 'narration', text: '堕羽……她有堕羽的翅膀……' },
-            { type: 'narration', text: '但他没有跑。因为浮空的力量还托着他——温柔的，稳定的，和每次送他上来时一模一样。' },
-            
-            // 选择支2
-            { type: 'choice', options: [
-                { text: '伸手握住她的手', jump: 'choice2_a' },
-                { text: '退后一步', jump: 'choice2_b' }
-            ]},
-            
-            // 选择支2分支
-            { type: 'label', name: 'choice2_a' },
-            { type: 'narration', text: '他握住了她的手。她没有说话，但她没有松开。' },
-            { type: 'goto', target: 'after_choice2' },
-            
-            { type: 'label', name: 'choice2_b' },
-            { type: 'narration', text: '他退了一步。她看着他，歪了歪头，什么都没说。但她还是稳稳地托着他往上升。' },
-            { type: 'goto', target: 'after_choice2' },
-            
-            { type: 'label', name: 'after_choice2' },
-            
-            // 场景10：阳光山坡
-            { type: 'bg', image: 'bg_hillside_sunlight' },
-            { type: 'narration', text: '他们的脚落在草地上。阳光照在身上，翅膀不见了。她的后背平平的，什么都没有。' },
-            { type: 'text', speaker: '艾丽斯', text: '风……很暖。' },
-            { type: 'narration', text: '她站在阳光里，只是一个普通的女孩。普通的黑裙子，普通的身高。' },
-            { type: 'text', speaker: '艾丽斯', text: '那是什么？' },
-            { type: 'text', speaker: '尤里斯', text: '那是卡洛斯村。我住的地方。' },
-            { type: 'text', speaker: '艾丽斯', text: '……家人？' },
-            { type: 'text', speaker: '尤里斯', text: '算是吧。' },
-            { type: 'text', speaker: '艾丽斯', text: '那……我是你的家人吗？' },
-            { type: 'narration', text: '风吹过山坡。他看着她——她有堕羽的翅膀，但她也是那个每天等他来的、不会说谎的女孩。' },
-            { type: 'text', speaker: '尤里斯', text: '如果你愿意的话。' },
-            { type: 'text', speaker: '艾丽斯', text: '……嗯。' },
-            { type: 'narration', text: '她跟在他身后，踩着他的脚印，一步一步往山下走去。' },
-            { type: 'narration', text: '阳光照在她们身上，把两个人的影子拉得很长很长。' },
-            
-            // 结束
-            { type: 'end' }
-        ];
+    // 标题
+    { type: 'title_start' },
+    
+    // 开场独白
+    { type: 'prologue' },
+    
+    // 章节标题
+    { type: 'chapter', text: '第一章\n温暖的深渊' },
+    
+    // ========== 序幕：尤里斯醒来 ==========
+    { type: 'bg', image: 'bg_morning_tears' },
+    { type: 'narration', text: '尤里斯醒来的时候脸上是湿的。' },
+    { type: 'narration', text: '不是哭过。没做什么梦，也没觉得难过。只是每天早上睁开眼，泪水就在那里。' },
+    { type: 'narration', text: '他用袖子擦了擦，翻身下了床。' },
+    { type: 'narration', text: '不知道为什么。一直都是这样。' },
+    
+    // ========== 莱恩家的清晨 ==========
+    { type: 'bg', image: 'bg_village_morning' },
+    { type: 'narration', text: '厨房里飘出面包的香气。戴西娜阿姨正在把刚出炉的黑麦面包从炉子里取出来。' },
+    { type: 'text', speaker: '戴西娜阿姨', text: '早安，尤里斯。去叫安娜起床，再去叫佩斯吃早饭。' },
+    { type: 'text', speaker: '尤里斯', text: '好。' },
+    { type: 'narration', text: '他先去了安娜的房间。小姑娘蜷成一团睡得香甜，被子蹬到了一边。' },
+    { type: 'text', speaker: '尤里斯', text: '安娜，该起床了。' },
+    { type: 'text', speaker: '安娜', text: '唔……再睡五分钟……' },
+    { type: 'text', speaker: '尤里斯', text: '戴西娜阿姨做了面包。还有蜂蜜。' },
+    { type: 'text', speaker: '安娜', text: '五分钟！' },
+    { type: 'narration', text: '尤里斯摇摇头，转身离开。五分钟后安娜会自己跑下来的。' },
+    { type: 'narration', text: '佩斯叔叔在院子里劈柴。' },
+    { type: 'text', speaker: '佩斯叔叔', text: '早啊，小子。今天天气不错，去山上捡些柴火回来吧。' },
+    { type: 'text', speaker: '尤里斯', text: '好。' },
+    { type: 'text', speaker: '佩斯叔叔', text: '别走太远，往西边的路别去。莫斯爷爷说过，那边不太平。' },
+    { type: 'narration', text: '尤里斯点点头，回屋拿了绳子和斧头。' },
+    { type: 'text', speaker: '戴西娜阿姨', text: '午饭带着！' },
+    { type: 'narration', text: '他折回厨房，接过她递来的饭盒，塞进腰间的绳子里固定好。' },
+    
+    // ========== 莫斯爷爷 ==========
+    { type: 'bg', image: 'bg_village_gate' },
+    { type: 'narration', text: '出门的时候路过莫斯爷爷的小木屋。老人正在门口摆弄一个小东西——不是木偶，是些说不上名字的玩意儿。' },
+    { type: 'text', speaker: '尤里斯', text: '莫斯爷爷，早安。' },
+    { type: 'text', speaker: '莫斯爷爷', text: '哟，小尤里斯。又去砍柴啊？' },
+    { type: 'text', speaker: '尤里斯', text: '嗯，佩斯叔叔让去的。' },
+    { type: 'narration', text: '他凑过去看老人手上的东西。那是一个像花但花的形状不对的小物件。' },
+    { type: 'text', speaker: '尤里斯', text: '这个是什么？' },
+    { type: 'text', speaker: '莫斯爷爷', text: '这个啊……很遥远的地方的东西。' },
+    { type: 'narration', text: '老人笑眯眯地看着很远的地方，像天上面还有一层天。' },
+    { type: 'text', speaker: '莫斯爷爷', text: '别往西边走啊，小子。' },
+    { type: 'text', speaker: '尤里斯', text: '我知道，佩斯叔叔也说了。' },
+    { type: 'text', speaker: '莫斯爷爷', text: '那就好，那就好。' },
+    
+    // ========== 雷纳德队长 ==========
+    { type: 'narration', text: '村口的布告栏上贴着一张旧告示——关于"奥瑞利安大人消灭堕羽巢穴"的通报。' },
+    { type: 'narration', text: '旁边的民兵营地里，一个络腮胡男人坐在木箱上，嗓门很大。' },
+    { type: 'text', speaker: '雷纳德队长', text: '我跟你们说，那堕羽啊，最怕的就是圣阳之力！一剑劈下来，黑的变成灰的——' },
+    { type: 'text', speaker: '民兵', text: '雷队长，又吹上了！' },
+    { type: 'text', speaker: '雷纳德队长', text: '吹什么？我亲眼见过的！' },
+    { type: 'narration', text: '他注意到尤里斯，朝他招了招手。' },
+    { type: 'text', speaker: '雷纳德队长', text: '小子！过来！砍柴去？' },
+    { type: 'text', speaker: '尤里斯', text: '嗯。队长，您年轻时候也打过堕羽吧？' },
+    { type: 'narration', text: '雷纳德的脸色微微变了变，又灌了一口酒。' },
+    { type: 'text', speaker: '雷纳德队长', text: '打过。三四只还是见过的。' },
+    { type: 'text', speaker: '尤里斯', text: '真的？' },
+    { type: 'text', speaker: '雷纳德队长', text: '那玩意儿……不是人该看的。不过咱们这儿偏，堕羽不往这边来。你小子运气好，这辈子估计见不着。' },
+    { type: 'text', speaker: '尤里斯', text: '那堕羽到底长什么样？' },
+    { type: 'narration', text: '雷纳德看了他一眼。' },
+    { type: 'text', speaker: '雷纳德队长', text: '黑的。翅膀是黑的，眼睛是黑的，全身上下没一点亮的地方。跟从墨水里捞出来似的。' },
+    { type: 'text', speaker: '雷纳德队长', text: '大的有房子那么高，小的也跟牛差不多大。爪子一挠，人就成两截了。' },
+    { type: 'text', speaker: '尤里斯', text: '那……有办法打吗？' },
+    { type: 'narration', text: '雷纳德沉默了一会儿。' },
+    { type: 'text', speaker: '雷纳德队长', text: '坠杀法。用地上的东西把天上的东西弄下来，在地上了结它。但要七个人配合，还得死几个。' },
+    { type: 'narration', text: '他看着尤里斯，眼神里有些什么。' },
+    { type: 'text', speaker: '雷纳德队长', text: '小子，你记住——堕羽不是人打的。是人拿命换的。' },
+    { type: 'text', speaker: '尤里斯', text: '……我记住了。' },
+    { type: 'text', speaker: '雷纳德队长', text: '行了，去砍柴吧。天黑前回来。' },
+    
+    // ========== 东边山林 ==========
+    { type: 'bg', image: 'bg_forest_east' },
+    { type: 'narration', text: '东边的山路他已经走得很熟了。穿过一片矮树林，绕过一个小池塘，再爬一段坡，就能看到大片的橡木林。' },
+    { type: 'narration', text: '斧头砍进树干的声音清脆而规律。太阳爬到头顶，他捆好了柴火，准备下山。' },
+    { type: 'narration', text: '他本来应该直接往回走的。' },
+    { type: 'narration', text: '但他看见了那道光。' },
+    { type: 'narration', text: '紫色的。' },
+    { type: 'narration', text: '只是一瞬间的事。那道光从西边的方向射过来，闪了一下就消失了。' },
+    { type: 'narration', text: '也许是什么东西反射的阳光吧。他这样告诉自己。然后他往那个方向走了几步。' },
+    
+    // ========== 悬崖边 ==========
+    { type: 'bg', image: 'bg_cliff_edge' },
+    { type: 'narration', text: '再走几步就到了悬崖边。山崖陡然下降，形成一道深深的裂谷。' },
+    { type: 'narration', text: '那道紫色的光就是从下面射出来的。' },
+    { type: 'narration', text: '他探出头往下看。深不见底。风吹上来，带着潮湿阴冷的气息。' },
+    { type: 'narration', text: '他盯着下面看了很久。然后他的脚踩在一块松动的岩石上。' },
+    { type: 'narration', text: '岩石滚动。世界倾斜。' },
+    { type: 'narration', text: '尤里斯伸出手想抓住什么，但什么也没抓到。风声灌进耳朵，眼前的景象飞速上升——' },
+    { type: 'narration', text: '饭盒从腰间甩了出去。' },
+    { type: 'narration', text: '然后，一切都变慢了。' },
+    { type: 'narration', text: '有什么东西从黑暗中托住了他，轻悄悄的，像一只看不见的手。坠落变成飘落——他的脚踩到了地面。' },
+    { type: 'narration', text: '膝盖一软，他跪了下去。' },
+    
+    // ========== 深渊底部 ==========
+    { type: 'bg', image: 'bg_abyss_approach' },
+    { type: 'narration', text: '安静了很久。他慢慢摸了摸自己的身体——手臂能动，腿也没断，什么伤都没有。' },
+    { type: 'narration', text: '不可能的。那个高度，他应该……' },
+    { type: 'narration', text: '四周很暗。但岩壁上嵌着一些东西，发出幽暗的紫色微光。那道紫光，就是他坠崖之前看到的那道。' },
+    { type: 'narration', text: '他站起来，环顾四周。空气又冷又潮，带着一股陈旧的味道。' },
+    { type: 'narration', text: '饭盒躺在几步之外，盖子摔开了，面包滚出来——但饭盒没有变形。从那么高掉下来，居然连一个坑都没有。' },
+    { type: 'narration', text: '他把面包塞回去，继续往前走。' },
+    
+    // ========== 进入石室 ==========
+    { type: 'bg', image: 'bg_alice_chained' },
+    { type: 'narration', text: '越走越深。紫色微光越来越亮。他拐过一个弯，前面突然开阔了。' },
+    { type: 'narration', text: '石室。圆形的，穹顶很高，紫色的光从四面八方渗出来。像水底。像很久没人去过的洞穴。' },
+    { type: 'narration', text: '他的呼吸停了一拍。' },
+    { type: 'narration', text: '石室中央有一把石椅。石椅上坐着一个人。' },
+    { type: 'narration', text: '一个女孩。' },
+    { type: 'narration', text: '很瘦，黑发垂到石椅脚边。穿着一件黑色的裙子，在紫色光芒下泛着冷冷的光泽。' },
+    { type: 'narration', text: '她的双手被铁链锁着。银灰色的链条从手腕延伸出来，绕过石椅的扶手，沉入黑暗。' },
+    { type: 'narration', text: '她一动不动。像一尊被遗忘的雕像。' },
+    { type: 'narration', text: '尤里斯的腿在抖。不是因为她可怕——是因为她太安静了。一个活人不应该这么安静。' },
+    
+    // ========== 靠近 ==========
+    { type: 'narration', text: '但就在这时——他的胸口突然紧了一下。' },
+    { type: 'narration', text: '不是疼。不是难受。是某种说不清的、突如其来的……紧。像是有什么东西在胸腔里动了一下。' },
+    { type: 'narration', text: '他低头看了看自己的手。没有抖了。奇怪。' },
+    { type: 'narration', text: '他继续往前走了。一步。又一步。' },
+    { type: 'narration', text: '石椅就在面前了。他蹲下来——她的脸完全露了出来。眼睛闭着，睫毛很长。嘴唇干裂，微微张开，像是在呼吸。' },
+    { type: 'narration', text: '在呼吸。还活着。' },
+    { type: 'narration', text: '他犹豫了一下，伸出手在她面前晃了晃。没有反应。又晃了晃。还是没反应。' },
+    { type: 'text', speaker: '尤里斯', text: '喂？' },
+    { type: 'narration', text: '声音在石室里回荡，显得很小。她没有醒。' },
+    { type: 'narration', text: '他不知道该怎么办。他可以就这样走掉，但——她看起来很饿。不知道为什么他有这个感觉。' },
+    { type: 'narration', text: '他低头看了看自己怀里的饭盒。' },
+    
+    // ========== 黑猫艾米 ==========
+    { type: 'bg', image: 'bg_black_cat' },
+    { type: 'narration', text: '就在他犹豫的时候——' },
+    { type: 'narration', text: '喵。' },
+    { type: 'narration', text: '尤里斯的心脏猛地一缩。他本能地往后退，整个人摔了个四脚朝天。饭盒飞出去，哐当撞在石壁上。' },
+    { type: 'narration', text: '石椅的阴影里蹲着一团黑乎乎的东西。一只猫。黑色的猫，在紫色光芒下泛着幽幽的光。' },
+    { type: 'text', speaker: '尤里斯', text: '你……你从哪冒出来的？' },
+    { type: 'narration', text: '猫没理他。它从阴影里跳出来，围着他转了一圈。然后它抬起头——那双眼睛是紫色的。和石壁上晶体一样的颜色。' },
+    { type: 'text', speaker: '尤里斯', text: '……吓死我了。' },
+    { type: 'narration', text: '他站起来，拍了拍灰，又把饭盒捡起来。' },
+    
+    // ========== 艾丽斯睁眼 ==========
+    { type: 'bg', image: 'bg_alice_eyes' },
+    { type: 'narration', text: '黑猫跳回去了，蹲在女孩膝盖旁边，用脑袋蹭了蹭垂下来的手指。' },
+    { type: 'narration', text: '就在这时——女孩睁开了眼睛。' },
+    { type: 'narration', text: '紫色的眼睛。不是猫眼睛那种透亮的紫，是更深更暗的紫。像是凝固的宝石。' },
+    { type: 'narration', text: '那双眼睛看向他。没有惊讶，没有害怕，没有好奇。什么都没有。' },
+    { type: 'narration', text: '他看着那双眼睛。胸口那个地方又动了。不是害怕——他已经把害怕忘了。他只是……看着她。不想走。' },
+    
+    // ========== 初次对话 ==========
+    { type: 'text', speaker: '尤里斯', text: '呃……你好？' },
+    { type: 'narration', text: '这句话蠢得要命。女孩没有回答，只是看着他。' },
+    { type: 'text', speaker: '尤里斯', text: '我……我叫尤里斯。我不是故意闯进来的。我是从上面摔下来的。' },
+    { type: 'narration', text: '他指了指头顶。那里什么也看不到，只有石壁和黑暗。' },
+    { type: 'text', speaker: '尤里斯', text: '然后我就到这里了。' },
+    { type: 'narration', text: '女孩还是没有说话。沉默。漫长的沉默。黑猫在她膝盖上蜷成一团，打起了呼噜。' },
+    { type: 'narration', text: '尤里斯开始觉得不自在了。他干脆把饭盒放在地上，打开盖子。' },
+    { type: 'text', speaker: '尤里斯', text: '你……饿吗？' },
+    { type: 'narration', text: '他把饭盒推到她面前。黑麦面包，一小块奶酪，几片腌菜。' },
+    { type: 'narration', text: '女孩低头看着饭盒。看了很久。然后她伸出手——动作很慢，像是不知道怎么做——拿起面包。' },
+    { type: 'narration', text: '铁链哗啦响了一声。' },
+    
+    // ========== 关于食物 ==========
+    { type: 'text', speaker: '尤里斯', text: '好吃吗？' },
+    { type: 'narration', text: '她抬起头看了他一眼。' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'text', speaker: '尤里斯', text: '不知道？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道什么是好吃。' },
+    { type: 'narration', text: '她又低下头，继续吃。每一口都嚼很久。面包，奶酪，腌菜，她都吃了，但没有任何评价。' },
+    { type: 'narration', text: '她吃完了最后一口。然后她把手里那块剩下的面包皮——递向他。' },
+    { type: 'text', speaker: '艾丽斯', text: '……给你。' },
+    { type: 'text', speaker: '尤里斯', text: '我不饿。你吃吧。' },
+    { type: 'narration', text: '她看了他两秒，把面包皮收回去，塞进嘴里，嚼完了。' },
+    
+    // ========== 连串追问 ==========
+    { type: 'text', speaker: '尤里斯', text: '那些铁链……是怎么锁上去的？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。醒来的时候就在这里了。' },
+    { type: 'text', speaker: '尤里斯', text: '醒来？你一直在这里？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'text', speaker: '尤里斯', text: '你有名字吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'text', speaker: '尤里斯', text: '有人来看过你吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'text', speaker: '尤里斯', text: '你是怎么来到这里的？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'narration', text: '她说的每一句话都很短，很淡。没有起伏，没有情绪。只是空。' },
+    { type: 'text', speaker: '尤里斯', text: '你……你是人类吗？' },
+    { type: 'narration', text: '那双紫色的眼睛里终于有了一丝波动。' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'narration', text: '又是这三个字。尤里斯叹了口气，干脆坐下来，背靠着石椅腿。' },
+    
+    // ========== 艾米 ==========
+    { type: 'text', speaker: '尤里斯', text: '那你有朋友吗？' },
+    { type: 'narration', text: '女孩没有立刻回答。她低着头，手指轻轻抚摸着膝盖上的黑猫。' },
+    { type: 'text', speaker: '艾丽斯', text: '有。' },
+    { type: 'narration', text: '她说着，目光落在猫身上。' },
+    { type: 'text', speaker: '尤里斯', text: '它叫什么？' },
+    { type: 'text', speaker: '艾丽斯', text: '……艾米。' },
+    { type: 'text', speaker: '尤里斯', text: '艾米。你可以听懂它说话？' },
+    { type: 'text', speaker: '艾丽斯', text: '……不知道。它说什么，我能懂。' },
+    { type: 'narration', text: '黑猫甩了甩尾巴，又喵了一声。' },
+    { type: 'text', speaker: '尤里斯', text: '它说什么了？' },
+    { type: 'narration', text: '女孩沉默了一会儿。' },
+    { type: 'text', speaker: '艾丽斯', text: '它说你很吵。' },
+    { type: 'narration', text: '尤里斯愣了一下，然后忍不住笑了。' },
+    { type: 'text', speaker: '尤里斯', text: '抱歉，我话太多了。' },
+    { type: 'narration', text: '黑猫又喵了一声。' },
+    { type: 'text', speaker: '尤里斯', text: '它说什么？' },
+    { type: 'text', speaker: '艾丽斯', text: '说没关系。' },
+    { type: 'text', speaker: '尤里斯', text: '它经常这么说吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '……不知道。' },
+    { type: 'narration', text: '她摸了摸艾米的脑袋，动作很轻。' },
+    
+    // ========== 砸铁链 ==========
+    { type: 'narration', text: '他站起来，绕到石椅侧面，想看看铁链是怎么固定的。他试着拽了拽，纹丝不动。' },
+    { type: 'text', speaker: '尤里斯', text: '我试试能不能把链条弄开。' },
+    { type: 'narration', text: '他从地上捡起一块石头，砸链条和椅子的连接处。' },
+    { type: 'narration', text: '当。当。当。' },
+    { type: 'narration', text: '链条没动。每一下都会出现白印——然后消失。' },
+    { type: 'text', speaker: '尤里斯', text: '这东西……不是铁。' },
+    { type: 'text', speaker: '尤里斯', text: '你在这里多久了？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    { type: 'text', speaker: '尤里斯', text: '从来没有试着解开吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '试过。' },
+    { type: 'text', speaker: '尤里斯', text: '结果呢？' },
+    { type: 'text', speaker: '艾丽斯', text: '解不开。' },
+    { type: 'narration', text: '她的声音很平静，没有沮丧，没有愤怒。' },
+    { type: 'text', speaker: '尤里斯', text: '你……不会饿？不会渴？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道饿。不知道渴。不知道冷。不知道疼。' },
+    { type: 'narration', text: '她说一句，尤里斯的心就紧一分。' },
+    { type: 'text', speaker: '尤里斯', text: '那你为什么要吃东西？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    
+    // ========== 决定离开 ==========
+    { type: 'narration', text: '他猛地站起来。' },
+    { type: 'text', speaker: '尤里斯', text: '糟了。我得回去了。' },
+    { type: 'narration', text: '他开始往通道口的方向走。但走了几步又停下来，回头看着她。' },
+    { type: 'text', speaker: '尤里斯', text: '你……你叫什么名字？' },
+    { type: 'narration', text: '女孩看着他。紫色的眼睛在暗处发着微光。' },
+    { type: 'text', speaker: '艾丽斯', text: '……艾丽斯。' },
+    { type: 'narration', text: '她停了停，像是在试着念出一个很久没说过的词。' },
+    { type: 'text', speaker: '艾丽斯', text: '艾丽斯。' },
+    { type: 'text', speaker: '艾丽斯', text: '你会再来的吗？' },
+    { type: 'narration', text: '不是请求，不是期待，只是……问。' },
+    { type: 'text', speaker: '尤里斯', text: '会。我会再来的。' },
+    { type: 'narration', text: '他走过去，在她面前蹲下来。' },
+    { type: 'text', speaker: '尤里斯', text: '你一个人不会害怕吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道什么是害怕。' },
+    { type: 'text', speaker: '尤里斯', text: '我会想办法把你救出去。' },
+    { type: 'text', speaker: '艾丽斯', text: '不用。' },
+    { type: 'text', speaker: '尤里斯', text: '为什么？' },
+    { type: 'text', speaker: '艾丽斯', text: '解不开的。' },
+    { type: 'text', speaker: '尤里斯', text: '我会想办法。' },
+    { type: 'text', speaker: '艾丽斯', text: '解不开的。' },
+    { type: 'text', speaker: '尤里斯', text: '我说了我会想办法！' },
+    { type: 'narration', text: '他的声音有点大。回声在石室里响了一圈，然后消失了。' },
+    { type: 'text', speaker: '艾丽斯', text: '你想回去？' },
+    { type: 'text', speaker: '尤里斯', text: '嗯。' },
+    { type: 'text', speaker: '艾丽斯', text: '我可以送你上去。' },
+    
+    // ========== 浮空 ==========
+    { type: 'narration', text: '尤里斯愣住了。' },
+    { type: 'text', speaker: '尤里斯', text: '什么？' },
+    { type: 'text', speaker: '艾丽斯', text: '送你上去。回到悬崖上面。' },
+    { type: 'narration', text: '她抬起一只手，铁链哗啦响了一声。然后——他感觉到脚底有什么东西在托他。' },
+    { type: 'narration', text: '轻轻的，柔柔的，像被一层看不见的水托起来。和坠崖时一模一样的感觉。' },
+    { type: 'narration', text: '他飘了起来。慢慢地，稳稳地。石室在脚下远去，紫光在身边流过。' },
+    { type: 'narration', text: '越来越亮。越来越暖。' },
+    { type: 'narration', text: '然后他的脚落在了草地上。阳光照在脸上。' },
+    { type: 'narration', text: '他转过头，探出悬崖往下看。深不见底。' },
+    { type: 'text', speaker: '尤里斯', text: '……谢谢。' },
+    
+    // ========== 晚饭 ==========
+    { type: 'bg', image: 'bg_village_morning' },
+    { type: 'narration', text: '晚饭的时候，尤里斯几乎没怎么说话。' },
+    { type: 'text', speaker: '安娜', text: '今天隔壁婶婶说东边的树林里出现了奇怪的脚印！可能是野兽！' },
+    { type: 'text', speaker: '安娜', text: '还有莫斯爷爷的木偶戏团又排了新故事，这次是王子打败恶龙拯救公主！' },
+    { type: 'narration', text: '尤里斯听着，偶尔点点头。他的心思完全不在这里。' },
+    { type: 'text', speaker: '戴西娜阿姨', text: '尤里斯？你在想什么？这么入神。' },
+    { type: 'text', speaker: '尤里斯', text: '没什么……在想明天去砍柴的事。' },
+    { type: 'text', speaker: '佩斯叔叔', text: '别太累了，慢慢来。' },
+    { type: 'narration', text: '他躺在床上，盯着天花板。他不知道该怎么处理这件事。但他知道——明天，他会再去的。' },
+    
+    // ========== 第二次去深渊 ==========
+    { type: 'bg', image: 'bg_cliff_edge' },
+    { type: 'narration', text: '第二次去那个石室，尤里斯带了一个饭盒。他站在崖边往下看。' },
+    { type: 'text', speaker: '尤里斯', text: '……艾丽斯？' },
+    { type: 'narration', text: '没有回音。' },
+    { type: 'text', speaker: '尤里斯', text: '艾丽斯！' },
+    { type: 'narration', text: '安静。风声。什么都没有。他咬了咬牙——往下跳了。' },
+    { type: 'narration', text: '风声灌进耳朵的那一瞬间他差点后悔。但下一秒，那种熟悉的感觉就来了——身体变轻，被一只看不见的手接住，轻悄悄地放到地上。' },
+    
+    // ========== 重逢 ==========
+    { type: 'bg', image: 'bg_alice_chained' },
+    { type: 'text', speaker: '艾丽斯', text: '……你又来了。' },
+    { type: 'narration', text: '她的语气听不出高兴还是不高兴，只是在陈述一个事实。' },
+    { type: 'text', speaker: '尤里斯', text: '昨天你把我送上去的时候——那是什么力量？' },
+    { type: 'text', speaker: '艾丽斯', text: '力量。' },
+    { type: 'text', speaker: '尤里斯', text: '你怎么做到的？' },
+    { type: 'narration', text: '她低头看了看自己的手，好像在想这个问题。' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。一直在。需要的时候就用。' },
+    { type: 'text', speaker: '尤里斯', text: '一直在？你一直都能做到那种事？' },
+    { type: 'narration', text: '艾丽斯看着他，没有回答。好像"能浮起一个人"和她会呼吸一样普通。' },
+    { type: 'text', speaker: '尤里斯', text: '……谢谢你。救我。把我送上去。' },
+    { type: 'text', speaker: '艾丽斯', text: '不用谢。' },
+    { type: 'narration', text: '但她又补了一句。' },
+    { type: 'text', speaker: '艾丽斯', text: '你掉下来的时候，很吵。' },
+    { type: 'narration', text: '尤里斯愣了一下，然后忍不住笑了。他从怀里掏出饭盒，走过去蹲下来。' },
+    { type: 'text', speaker: '尤里斯', text: '给你。' },
+    { type: 'narration', text: '艾丽斯接过饭盒，拿起面包咬了一口。嚼了很久。' },
+    { type: 'text', speaker: '尤里斯', text: '……好吃吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。' },
+    
+    // ========== 第三次：一起吃 ==========
+    { type: 'bg', image: 'bg_alice_bread' },
+    { type: 'narration', text: '第三次去的时候，尤里斯带了一整份午饭。' },
+    { type: 'text', speaker: '艾丽斯', text: '你怎么不吃？' },
+    { type: 'text', speaker: '尤里斯', text: '我不饿。' },
+    { type: 'narration', text: '她看了他几秒，然后把饭盒推向他。' },
+    { type: 'text', speaker: '艾丽斯', text: '一起吃。' },
+    { type: 'narration', text: '这是她第一次主动提出要求。他们隔着铁链坐着，面对面，在紫光里吃完了那顿午饭。' },
+    { type: 'text', speaker: '艾丽斯', text: '你的名字，尤里斯。' },
+    { type: 'text', speaker: '尤里斯', text: '你怎么知道？' },
+    { type: 'text', speaker: '艾丽斯', text: '你说过的。你说会回来的。我记得。' },
+    
+    // ========== 铁链的声音 ==========
+    { type: 'narration', text: '第四次，第五次，第六次。尤里斯每天都会去。' },
+    { type: 'narration', text: '他开始注意到一些奇怪的事——铁链偶尔会响。不是她动的时候，是她不动的时候。' },
+    { type: 'narration', text: '那些声音总是在他讲什么事情的时候响起。当他讲起戴西娜阿姨做的蜂蜜面包，讲起安娜追着他叫"哥哥"的时候——铁链就会响。' },
+    { type: 'text', speaker: '尤里斯', text: '你听到了吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '听到什么？' },
+    { type: 'text', speaker: '尤里斯', text: '链条的声音。' },
+    { type: 'narration', text: '她低头看了看自己的手腕。' },
+    { type: 'text', speaker: '艾丽斯', text: '……没有。' },
+    { type: 'narration', text: '但在她说完"没有"之后，那根链条又响了一声。很轻。像是在叹气。' },
+    
+    // ========== 为什么每天都来 ==========
+    { type: 'text', speaker: '艾丽斯', text: '你为什么每天都来？' },
+    { type: 'text', speaker: '尤里斯', text: '因为……想来看看你。' },
+    { type: 'narration', text: '她歪了歪头，然后低下头，继续和黑猫玩。' },
+    
+    // ========== 晨泪消失 ==========
+    { type: 'bg', image: 'bg_morning_tears' },
+    { type: 'narration', text: '不知道从什么时候开始，尤里斯发现自己每天早晨醒来的时候，脸上是干的。晨泪消失了。' },
+    { type: 'text', speaker: '安娜', text: '你最近好像很开心。' },
+    { type: 'text', speaker: '尤里斯', text: '有吗？' },
+    { type: 'text', speaker: '安娜', text: '有啊。你的眼睛变亮了。像是天上的星星一样。' },
+    { type: 'narration', text: '尤里斯不知道该怎么回答。他只是笑了笑，摸了摸安娜的头。' },
+    { type: 'text', speaker: '尤里斯', text: '你想太多了。' },
+    
+    // ========== 艾丽斯在等他 ==========
+    { type: 'bg', image: 'bg_alice_chained' },
+    { type: 'narration', text: '艾丽斯在等他。不是他自以为她在等，而是她真的在等他。' },
+    { type: 'text', speaker: '尤里斯', text: '你在等我？' },
+    { type: 'text', speaker: '艾丽斯', text: '……嗯。' },
+    { type: 'text', speaker: '尤里斯', text: '为什么？' },
+    { type: 'text', speaker: '艾丽斯', text: '不知道。就是……会等。' },
+    
+    // ========== 家是什么 ==========
+    { type: 'narration', text: '那天他给她讲莱恩一家的事。艾丽斯安静地听着。' },
+    { type: 'text', speaker: '艾丽斯', text: '家是什么？' },
+    { type: 'text', speaker: '尤里斯', text: '家就是……有人在的地方。有家人在的地方。' },
+    { type: 'text', speaker: '艾丽斯', text: '家人是什么？' },
+    { type: 'text', speaker: '尤里斯', text: '就是……会等你回来的人。会给你做饭的人。会担心你的人。' },
+    { type: 'narration', text: '艾丽斯看着他，沉默了很久。紫色的眼睛里有什么东西在动。很轻，很淡，像是水面上的涟漪。' },
+    
+    // ========== 破链 ==========
+    { type: 'cg', image: 'cg_chain_break' },
+    { type: 'narration', text: '然后她做了一件从未做过的事。' },
+    { type: 'narration', text: '她的手动了。被铁链束缚的手腕，缓缓地、艰难地挪动。她的手指向他的方向伸过来。' },
+    { type: 'narration', text: '她的手指碰到他的手背。不是轻轻的触碰——那是抓。像溺水的人抓住最后一根浮木。' },
+    { type: 'narration', text: '然后铁链猛地绷紧了。勒得更深，嵌进她手腕的皮肉里。有什么液体从缝隙里渗出来——是血。' },
+    { type: 'text', speaker: '尤里斯', text: '艾丽斯——' },
+    { type: 'narration', text: '咔。铁链上出现了一道裂纹。' },
+    { type: 'narration', text: '裂纹在增加。一道，两道，三道。紫色的光从裂缝里渗出来，和她手腕上血的颜色混在一起。' },
+    { type: 'narration', text: '他本能地反握住她的手腕，往回拉——' },
+    { type: 'narration', text: '咔嚓。链条碎了。所有的链条。银灰色的碎片飞散开来，像萤火虫一样飘荡在空气里。' },
+    { type: 'narration', text: '她低着头，看着自己空荡荡的手腕。暗红色的勒痕，和从旧伤里渗出来的新血。' },
+    { type: 'narration', text: '然后她抬起头，看着尤里斯。' },
+    { type: 'text', speaker: '艾丽斯', text: '……疼。' },
+    { type: 'narration', text: '只有一个字。那是她人生中第一次说出的、关于感受的词。' },
+    { type: 'text', speaker: '尤里斯', text: '……艾丽斯。' },
+    { type: 'narration', text: '她把手指按在血上，看了看指尖的红色。然后她把手指伸向尤里斯。' },
+    { type: 'text', speaker: '艾丽斯', text: '给你看。' },
+    { type: 'narration', text: '语气和平时一样，淡淡的。但那是她第一次主动向他展示什么。' },
+    
+    // ========== 站起来 ==========
+    { type: 'bg', image: 'bg_alice_eyes' },
+    { type: 'narration', text: '锁链碎掉以后，艾丽斯第一次从石椅上站了起来。站得很不稳，像一只很久没有走过路的雏鸟。' },
+    { type: 'text', speaker: '尤里斯', text: '慢慢来。' },
+    { type: 'narration', text: '他伸手扶住她。她迈出了第一步。' },
+    { type: 'text', speaker: '尤里斯', text: '能走吗？' },
+    { type: 'text', speaker: '艾丽斯', text: '……能。' },
+    { type: 'text', speaker: '艾丽斯', text: '我送你上去。然后……我也上去。' },
+    { type: 'text', speaker: '尤里斯', text: '你能上去？' },
+    { type: 'text', speaker: '艾丽斯', text: '能。' },
+    
+    // ========== 翅膀 ==========
+    { type: 'narration', text: '她走到悬崖正下方，仰起头，抬起了手。' },
+    { type: 'narration', text: '他感觉到那股熟悉的力量，然后——他看见了。' },
+    { type: 'narration', text: '艾丽斯的背后，从她的肩胛骨两侧伸出来——两片小小的、黑色的翅膀。巴掌大，紫色的微光在翅膀边缘流动。' },
+    { type: 'narration', text: '翅膀。堕羽。他的脑子瞬间只剩下了这两个字。' },
+    { type: 'narration', text: '他的后背撞上了岩壁。他自己都不知道什么时候退到了那里。' },
+    { type: 'text', speaker: '艾丽斯', text: '怎么了？' },
+    { type: 'narration', text: '她的声音还是那样。轻轻的，淡淡的，空空的。' },
+    { type: 'narration', text: '他应该跑。但浮空的力量还托着他。轻柔的，稳稳的。她一直在用这股力量送他上去。每一天。每一次。' },
+    
+    // 选择支
+    { type: 'choice', options: [
+        { text: '伸手握住她的手', jump: 'choice2_a' },
+        { text: '退后一步', jump: 'choice2_b' }
+    ]},
+    
+    { type: 'label', name: 'choice2_a' },
+    { type: 'narration', text: '他闭上眼，深吸了一口气。然后伸出手，握住了她的手。她没有说话，但她没有松开。' },
+    { type: 'goto', target: 'after_choice2' },
+    
+    { type: 'label', name: 'choice2_b' },
+    { type: 'narration', text: '他退了一步。她看着他，歪了歪头，什么都没说。但她还是稳稳地托着他往上升。' },
+    
+    { type: 'label', name: 'after_choice2' },
+    { type: 'narration', text: '很慢。浮两个人比一个人吃力太多了。他能感觉到她在发抖——但她没有停。' },
+    { type: 'narration', text: '越来越亮。越来越暖。' },
+    
+    // ========== 阳光下 ==========
+    { type: 'bg', image: 'bg_hillside_sunlight' },
+    { type: 'narration', text: '他们的脚落在草地上。阳光落在身上的一瞬间，翅膀不见了。她的后背平平的，什么都没有。' },
+    { type: 'text', speaker: '艾丽斯', text: '风……很暖。' },
+    { type: 'narration', text: '她站在阳光里，举手指挡住那道光。只是一个苍白的、瘦弱的女孩。' },
+    { type: 'text', speaker: '艾丽斯', text: '那是什么？' },
+    { type: 'text', speaker: '尤里斯', text: '那是卡洛斯村。我住的地方。' },
+    { type: 'text', speaker: '艾丽斯', text: '那里住着佩斯叔叔、戴西娜阿姨，还有安娜？' },
+    { type: 'text', speaker: '尤里斯', text: '嗯。' },
+    { type: 'text', speaker: '艾丽斯', text: '……家人？' },
+    { type: 'text', speaker: '尤里斯', text: '算是吧。' },
+    { type: 'narration', text: '艾丽斯沉默了一会儿。然后她转过身。' },
+    { type: 'text', speaker: '艾丽斯', text: '你呢？你是谁的家人？' },
+    { type: 'narration', text: '尤里斯愣住了。' },
+    { type: 'text', speaker: '尤里斯', text: '我是……我也不知道。' },
+    { type: 'narration', text: '艾丽斯伸出手，指了指自己。' },
+    { type: 'text', speaker: '艾丽斯', text: '那，我是你的家人吗？' },
+    { type: 'narration', text: '风吹过山坡。他想说"是"。但那个字卡在嗓子眼里。她是一个堕羽——这个词像一根刺扎在他心里。' },
+    { type: 'narration', text: '但她就站在那里。阳光照在她身上。' },
+    { type: 'text', speaker: '尤里斯', text: '如果你愿意的话。' },
+    { type: 'narration', text: '声音很轻。他没有勇气说"是"，只能这样回答。但他说了。' },
+    { type: 'narration', text: '艾丽斯歪了歪头，好像在思考这句话的意思。' },
+    { type: 'text', speaker: '艾丽斯', text: '……嗯。' },
+    { type: 'text', speaker: '尤里斯', text: '走吧，回家。' },
+    { type: 'narration', text: '艾丽斯跟在他身后，踩着他的脚印，一步一步往山下走去。阳光照在她们身上，把两个人的影子拉得很长。' },
+    
+    // 结束
+    { type: 'end' }
+];
+
         
         // ==================== 游戏引擎 ====================
         
