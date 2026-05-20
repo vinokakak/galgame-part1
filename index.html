@@ -1097,11 +1097,12 @@
     function startGame() {
         titleScreen.style.display = 'none';
         currentIndex = 0;
-        initBGM();
         executeScript(SCRIPT[currentIndex]);
     }
 
     function handleClick(e) {
+        // 独白期间不处理
+        if (prologueActive) return;
         if (e.target.classList.contains('menu-btn') || e.target.id === 'start-btn') return;
         if (titleScreen.style.display !== 'none') return;
         
@@ -1313,13 +1314,15 @@
         // BGM淡出
         fadeAudio(prologueBgm, 2000, 0.5);
         
-        // 1.5s后隐藏prologue，进入下一脚本
+        // 1.5s后隐藏prologue，初始化游戏BGM，进入下一脚本
         setTimeout(() => {
             prologueEl.style.display = 'none';
             prologueText.innerHTML = '';
             prologueCurrentEl = null;
             prologueBgm.pause();
             prologueBgm.currentTime = 0;
+            // 初始化游戏BGM系统
+            initBGM();
             nextScript();
         }, 1500);
     }
@@ -1346,33 +1349,51 @@
         
         dialogBox.style.display = 'none';
         bg.classList.add('fade-out');
-        loadImage(imageKey);
         
-        setTimeout(() => {
-            bg.onload = () => {
-                bg.classList.remove('fade-out');
-                isFading = false;
-                if (skipMode) {
-                    setTimeout(nextScript, 300);
-                } else if (autoMode) {
-                    scheduleAuto(1000);
-                } else {
-                    nextScript();
-                }
-            };
-            bg.onerror = () => {
-                bg.classList.remove('fade-out');
-                isFading = false;
-                if (skipMode) {
-                    setTimeout(nextScript, 300);
-                } else if (autoMode) {
-                    scheduleAuto(1000);
-                } else {
-                    nextScript();
-                }
-            };
-            bg.src = getCachedImage(imageKey);
-        }, skipMode ? 300 : 800);
+        // 先确保图片已加载到缓存
+        loadImage(imageKey).then(function() {
+            setTimeout(() => {
+                let loaded = false;
+                bg.onload = () => {
+                    loaded = true;
+                    bg.classList.remove('fade-out');
+                    isFading = false;
+                    if (skipMode) {
+                        setTimeout(nextScript, 300);
+                    } else if (autoMode) {
+                        scheduleAuto(1000);
+                    } else {
+                        nextScript();
+                    }
+                };
+                bg.onerror = () => {
+                    loaded = true;
+                    bg.classList.remove('fade-out');
+                    isFading = false;
+                    if (skipMode) {
+                        setTimeout(nextScript, 300);
+                    } else if (autoMode) {
+                        scheduleAuto(1000);
+                    } else {
+                        nextScript();
+                    }
+                };
+                bg.src = getCachedImage(imageKey);
+                // 超时保护：3秒后如果图片还没加载完就强制推进
+                setTimeout(() => {
+                    if (!loaded) {
+                        bg.classList.remove('fade-out');
+                        isFading = false;
+                        nextScript();
+                    }
+                }, 3000);
+            }, skipMode ? 300 : 800);
+        }).catch(function() {
+            // loadImage失败也强制推进
+            bg.classList.remove('fade-out');
+            isFading = false;
+            nextScript();
+        });
     }
 
     function showText(speaker, text) {
