@@ -111,12 +111,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            align-items: center;
             z-index: 20;
-            padding-bottom: 120px;
         }
         
         #title-screen-bg {
@@ -150,16 +145,224 @@
             margin-bottom: 40px;
         }
         
-        #title-screen .start-hint {
-            color: #5a5a6a;
-            font-size: 14px;
-            margin-top: 60px;
-            animation: pulse 2.5s infinite ease-in-out;
+        /* 标题Logo区域 */
+        .title-logo {
+            position: absolute;
+            top: 12%;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            z-index: 1;
         }
         
-        @keyframes pulse {
-            0%, 100% { opacity: 0.4; transform: scale(1); }
-            50% { opacity: 0.9; transform: scale(1.02); }
+        /* 标题菜单按钮 */
+        .title-menu {
+            position: absolute;
+            bottom: 18%;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            z-index: 2;
+        }
+        
+        .title-btn {
+            background: rgba(15, 10, 25, 0.75);
+            border: 1px solid rgba(140, 120, 160, 0.35);
+            color: #d8c8b0;
+            font-size: 16px;
+            padding: 12px 60px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 3px;
+            min-width: 220px;
+            backdrop-filter: blur(4px);
+            font-family: inherit;
+        }
+        
+        .title-btn:hover {
+            background: rgba(40, 30, 60, 0.9);
+            border-color: rgba(200, 180, 220, 0.6);
+            color: #f0e8d8;
+            transform: translateX(8px);
+            text-shadow: 0 0 10px rgba(200, 180, 220, 0.4);
+        }
+        
+        .title-btn:active {
+            transform: translateX(4px);
+            background: rgba(60, 45, 80, 0.95);
+        }
+        
+        /* CG画廊 */
+        #cg-gallery {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 3, 10, 0.97);
+            display: none;
+            flex-direction: column;
+            z-index: 50;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        
+        .cg-gallery-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .cg-gallery-header h2 {
+            color: #e8d5b7;
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+        
+        .cg-close-btn {
+            background: rgba(30, 20, 40, 0.8);
+            border: 1px solid rgba(140, 120, 160, 0.4);
+            color: #c8b8a0;
+            padding: 8px 24px;
+            cursor: pointer;
+            font-size: 14px;
+            letter-spacing: 1px;
+            transition: all 0.25s ease;
+            font-family: inherit;
+        }
+        
+        .cg-close-btn:hover {
+            background: rgba(50, 40, 70, 0.9);
+            color: #f0e8d8;
+        }
+        
+        .cg-gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 16px;
+            overflow-y: auto;
+            flex: 1;
+            padding: 10px;
+        }
+        
+        .cg-thumb {
+            position: relative;
+            aspect-ratio: 16/9;
+            overflow: hidden;
+            border-radius: 4px;
+            border: 1px solid rgba(100, 80, 120, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .cg-thumb:hover {
+            border-color: rgba(180, 160, 200, 0.6);
+            transform: scale(1.03);
+        }
+        
+        .cg-thumb img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+        }
+        
+        .cg-thumb.locked {
+            filter: brightness(0.15);
+            cursor: not-allowed;
+        }
+        
+        .cg-thumb.locked::after {
+            content: '🔒';
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 28px;
+        }
+        
+        /* CG大图预览 */
+        .cg-viewer {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 55;
+            cursor: pointer;
+        }
+        
+        .cg-viewer img {
+            max-width: 95%;
+            max-height: 95%;
+            object-fit: contain;
+        }
+        
+        /* 存档界面 */
+        #save-load-screen {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(5, 3, 10, 0.97);
+            display: none;
+            flex-direction: column;
+            z-index: 50;
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        
+        .save-load-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .save-load-header h2 {
+            color: #e8d5b7;
+            font-size: 22px;
+            letter-spacing: 2px;
+        }
+        
+        .save-slots {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            overflow-y: auto;
+            flex: 1;
+            padding: 10px;
+        }
+        
+        .save-slot {
+            background: rgba(20, 15, 30, 0.8);
+            border: 1px solid rgba(100, 80, 120, 0.3);
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .save-slot:hover {
+            border-color: rgba(160, 140, 180, 0.5);
+            background: rgba(35, 25, 50, 0.9);
+        }
+        
+        .save-slot .slot-info {
+            color: #c8b8a0;
+        }
+        
+        .save-slot .slot-info .slot-label {
+            font-size: 15px;
+            margin-bottom: 4px;
+        }
+        
+        .save-slot .slot-info .slot-detail {
+            font-size: 12px;
+            color: #7a6a5a;
+        }
+        
+        .save-slot .slot-empty {
+            color: #5a5a6a;
+            font-size: 14px;
         }
         
         /* 章节标题 */
@@ -316,15 +519,7 @@
             transition: opacity 1s ease;
         }
         
-        /* 标题内容区域 */
-        .title-content {
-            position: relative;
-            z-index: 1;
-            text-align: center;
-            background: linear-gradient(180deg, transparent 0%, rgba(0,0,0,0.4) 100%);
-            padding: 40px 60px;
-            border-radius: 8px;
-        }
+        /* 标题内容区域 - 已由title-logo替代 */
     </style>
 </head>
 <body>
@@ -365,18 +560,46 @@
         <!-- 标题画面 -->
         <div id="title-screen">
             <img id="title-screen-bg" src="" alt="">
-            <div class="title-content">
+            <div class="title-logo">
                 <h1>交错的光与暗</h1>
                 <h2>Demo v4 - 温暖的深渊</h2>
                 <p class="subtitle">第一章 尤里斯与艾丽斯</p>
-                <p class="start-hint">点击开始</p>
             </div>
+            <div class="title-menu">
+                <button class="title-btn" id="btn-new-game">新游戏</button>
+                <button class="title-btn" id="btn-load">读取存档</button>
+                <button class="title-btn" id="btn-cg">CG集</button>
+                <button class="title-btn" id="btn-fullscreen">全屏</button>
+            </div>
+        </div>
+        
+        <!-- CG画廊 -->
+        <div id="cg-gallery">
+            <div class="cg-gallery-header">
+                <h2>CG集</h2>
+                <button class="cg-close-btn" id="cg-gallery-close">返回</button>
+            </div>
+            <div class="cg-gallery-grid" id="cg-gallery-grid"></div>
+        </div>
+        
+        <!-- 存档界面 -->
+        <div id="save-load-screen">
+            <div class="save-load-header">
+                <h2 id="save-load-title">读取存档</h2>
+                <button class="cg-close-btn" id="save-load-close">返回</button>
+            </div>
+            <div class="save-slots" id="save-slots"></div>
         </div>
         
         <!-- 结束画面 -->
         <div id="end-screen">
             <h1>Demo End</h1>
             <p>感谢游玩</p>
+        </div>
+        
+        <!-- CG大图预览 -->
+        <div class="cg-viewer" id="cg-viewer">
+            <img id="cg-viewer-img" src="" alt="">
         </div>
     </div>
     
@@ -901,8 +1124,38 @@ const IMAGES = {
             // 设置标题画面背景
             titleBgEl.src = IMAGES['bg_title'] || '';
             
-            // 标题画面点击
-            titleScreen.addEventListener('click', startGame);
+            // 标题菜单按钮
+            document.getElementById('btn-new-game').addEventListener('click', function(e) {
+                e.stopPropagation();
+                startGame();
+            });
+            document.getElementById('btn-load').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showLoadScreen();
+            });
+            document.getElementById('btn-cg').addEventListener('click', function(e) {
+                e.stopPropagation();
+                showCGGallery();
+            });
+            document.getElementById('btn-fullscreen').addEventListener('click', function(e) {
+                e.stopPropagation();
+                toggleFullscreen();
+            });
+            
+            // CG画廊关闭
+            document.getElementById('cg-gallery-close').addEventListener('click', function() {
+                document.getElementById('cg-gallery').style.display = 'none';
+            });
+            
+            // 存档界面关闭
+            document.getElementById('save-load-close').addEventListener('click', function() {
+                document.getElementById('save-load-screen').style.display = 'none';
+            });
+            
+            // CG大图预览关闭
+            document.getElementById('cg-viewer').addEventListener('click', function() {
+                this.style.display = 'none';
+            });
             
             // 游戏区域点击
             document.getElementById('game-container').addEventListener('click', handleClick);
@@ -1031,6 +1284,8 @@ const IMAGES = {
         // 显示背景 - 完整场景图
         function showBackground(imageName) {
             bgEl.src = IMAGES[imageName] || '';
+            // 自动解锁CG
+            unlockCG(imageName);
         }
         
         // 显示对话框
@@ -1286,6 +1541,8 @@ const IMAGES = {
             showingCG = true;
             cgImage.src = IMAGES[imageName] || '';
             cgLayer.style.display = 'flex';
+            // 自动解锁CG
+            unlockCG(imageName);
         }
         
         // 关闭CG
@@ -1301,6 +1558,131 @@ const IMAGES = {
             narrationEl.style.display = 'none';
             continueHint.style.display = 'none';
             choiceContainer.style.display = 'none';
+        }
+        
+        // ===== 存档系统 =====
+        const SAVE_KEY = 'galgame_saves';
+        const MAX_SAVES = 8;
+        
+        function getSaves() {
+            try {
+                return JSON.parse(localStorage.getItem(SAVE_KEY)) || {};
+            } catch { return {}; }
+        }
+        
+        function saveGame(slotIndex) {
+            const saves = getSaves();
+            saves[slotIndex] = {
+                scriptIndex: scriptIndex,
+                timestamp: Date.now(),
+                currentBg: document.getElementById('background').src
+            };
+            localStorage.setItem(SAVE_KEY, JSON.stringify(saves));
+        }
+        
+        function loadGame(slotIndex) {
+            const saves = getSaves();
+            const data = saves[slotIndex];
+            if (!data) return false;
+            
+            gameStarted = true;
+            titleScreen.style.display = 'none';
+            document.getElementById('save-load-screen').style.display = 'none';
+            scriptIndex = data.scriptIndex;
+            executeScript();
+            return true;
+        }
+        
+        function showLoadScreen() {
+            const saves = getSaves();
+            const container = document.getElementById('save-slots');
+            container.innerHTML = '';
+            
+            for (let i = 0; i < MAX_SAVES; i++) {
+                const slot = document.createElement('div');
+                slot.className = 'save-slot';
+                const data = saves[i];
+                
+                if (data) {
+                    const date = new Date(data.timestamp);
+                    const dateStr = date.toLocaleString('zh-CN');
+                    slot.innerHTML = `<div class="slot-info"><div class="slot-label">存档 ${i + 1}</div><div class="slot-detail">${dateStr} · 脚本位置 ${data.scriptIndex}</div></div>`;
+                    slot.addEventListener('click', function() {
+                        loadGame(i);
+                    });
+                } else {
+                    slot.innerHTML = `<div class="slot-empty">存档 ${i + 1} — 空</div>`;
+                }
+                container.appendChild(slot);
+            }
+            
+            document.getElementById('save-load-screen').style.display = 'flex';
+        }
+        
+        // ===== CG画廊 =====
+        const CG_LIST = [
+            { key: 'bg_alice_chained', name: '被锁链束缚的艾丽斯' },
+            { key: 'bg_cliff_morning', name: '悬崖清晨' },
+            { key: 'bg_hillside_sunlight', name: '山坡阳光' },
+            { key: 'bg_village_morning', name: '村庄清晨' },
+            { key: 'bg_cave_dialog', name: '洞穴对话' },
+            { key: 'cg_chain_break', name: '锁链碎裂' },
+            { key: 'bg_title', name: '标题' }
+        ];
+        
+        const UNLOCK_KEY = 'galgame_cg_unlocked';
+        
+        function getUnlockedCGs() {
+            try {
+                return JSON.parse(localStorage.getItem(UNLOCK_KEY)) || [];
+            } catch { return []; }
+        }
+        
+        function unlockCG(key) {
+            const unlocked = getUnlockedCGs();
+            if (!unlocked.includes(key)) {
+                unlocked.push(key);
+                localStorage.setItem(UNLOCK_KEY, JSON.stringify(unlocked));
+            }
+        }
+        
+        function showCGGallery() {
+            const unlocked = getUnlockedCGs();
+            const grid = document.getElementById('cg-gallery-grid');
+            grid.innerHTML = '';
+            
+            CG_LIST.forEach(function(item) {
+                const thumb = document.createElement('div');
+                const isUnlocked = unlocked.includes(item.key);
+                thumb.className = 'cg-thumb' + (isUnlocked ? '' : ' locked');
+                
+                if (IMAGES[item.key]) {
+                    const img = document.createElement('img');
+                    img.src = IMAGES[item.key];
+                    thumb.appendChild(img);
+                }
+                
+                if (isUnlocked) {
+                    thumb.addEventListener('click', function() {
+                        const viewer = document.getElementById('cg-viewer');
+                        document.getElementById('cg-viewer-img').src = IMAGES[item.key] || '';
+                        viewer.style.display = 'flex';
+                    });
+                }
+                
+                grid.appendChild(thumb);
+            });
+            
+            document.getElementById('cg-gallery').style.display = 'flex';
+        }
+        
+        // ===== 全屏 =====
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                document.documentElement.requestFullscreen().catch(function() {});
+            } else {
+                document.exitFullscreen().catch(function() {});
+            }
         }
         
         // 结束游戏
