@@ -1,4 +1,4 @@
-const CACHE_NAME = 'galgame-part1-v19';
+const CACHE_NAME = 'galgame-part1-v9';
 const URLS_TO_CACHE = [
   './index.html',
   './icon-192.png',
@@ -23,7 +23,6 @@ self.addEventListener('activate', event => {
 
 self.addEventListener('fetch', event => {
   if (event.request.url.includes('index.html')) {
-    // HTML文件用网络优先策略，确保始终获取最新版本
     event.respondWith(
       fetch(event.request).then(resp => {
         const clone = resp.clone();
@@ -32,7 +31,6 @@ self.addEventListener('fetch', event => {
       }).catch(() => caches.match(event.request))
     );
   } else {
-    // 其他资源用缓存优先
     event.respondWith(
       caches.match(event.request).then(resp => resp || fetch(event.request))
     );
